@@ -1,12 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
+import axios from "axios";
+import Pokemon from "./components/Pokemon";
 
 function App() {
-  return (
-    <div>
-      Begin hier met de opdracht!
-    </div>
-  );
+
+    return (
+        <>
+            <Pokemon />
+        </>
+    );
 }
 
 export default App;
