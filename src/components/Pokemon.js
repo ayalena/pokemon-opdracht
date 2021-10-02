@@ -1,20 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 
-function Pokemon() {
+function Pokemon({number}) {
     const [pokemons, setPokemons] = useState({});
 
     useEffect(() => {
         async function fetchPokemons() {
             try {
-                const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/bulbasaur`);
+                const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${number}`);
                 console.log(result.data);
                 setPokemons(result.data);
             } catch (e) {
                 console.error(e);
             }
         }
+
         fetchPokemons();
+
     }, []);
 
     return (
@@ -27,7 +29,9 @@ function Pokemon() {
                     <p>Moves: {pokemons.moves.length}</p>
                     <p>Weight: {pokemons.weight}</p>
                     <p>Abilities: </p>
-                    <p>{pokemons.abilities.map((pokemon) => { return <ul>{pokemon.ability.name}</ul>})} </p>
+                    <p>{pokemons.abilities.map((pokemon) => {
+                        return <ul>{pokemon.ability.name}</ul>
+                    })} </p>
                 </>
                 }
             </div>

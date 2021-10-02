@@ -7,7 +7,15 @@ function App() {
 
     return (
         <>
-            <Pokemon />
+            <Pokemon number={1}/>
+            <Pokemon number={2}/>
+            <Pokemon number={3}/>
+            <Pokemon number={4}/>
+            <Pokemon number={5}/>
+            <Pokemon number={6}/>
+            <Pokemon number={7}/>
+            <Pokemon number={8}/>
+            <Pokemon number={9}/>
         </>
     );
 }
