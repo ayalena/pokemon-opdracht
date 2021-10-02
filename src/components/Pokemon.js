@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 
-function Pokemon({number}) {
+function Pokemon({pokeName}) {
     const [pokemons, setPokemons] = useState({});
 
     useEffect(() => {
         async function fetchPokemons() {
             try {
-                const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${number}`);
+                const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeName}`);
                 console.log(result.data);
                 setPokemons(result.data);
             } catch (e) {

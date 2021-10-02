@@ -1,21 +1,35 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import axios from "axios";
 import Pokemon from "./components/Pokemon";
 
 function App() {
+    const [twenty, setTwenty] = useState([]);
+
+    useEffect(() => {
+        async function fetchTwenty() {
+            try {
+                const result = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=21&offset=0`);
+                console.log(result.data.results);
+                setTwenty(result.data.results);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        fetchTwenty();
+
+    }, []);
+
+    let twentyNames = twenty.map((pokemonName) => {
+        return <Pokemon pokeName={pokemonName.name}/>;
+    })
 
     return (
         <>
-            <Pokemon number={1}/>
-            <Pokemon number={2}/>
-            <Pokemon number={3}/>
-            <Pokemon number={4}/>
-            <Pokemon number={5}/>
-            <Pokemon number={6}/>
-            <Pokemon number={7}/>
-            <Pokemon number={8}/>
-            <Pokemon number={9}/>
+            <div>
+                {twentyNames}
+            </div>
         </>
     );
 }
