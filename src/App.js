@@ -6,7 +6,6 @@ import Pokemon from "./components/Pokemon";
 function App() {
     const [twenty, setTwenty] = useState([]);
     const [offsetNumber, setOffsetNumber] = useState(0);
-    // let [nextTwenty, setNextTwenty] = useState([]);
 
     useEffect(() => {
         async function fetchTwenty() {
@@ -22,6 +21,15 @@ function App() {
         fetchTwenty();
     }, []);
 
+    function handleNextTwenty() {
+        setOffsetNumber(offsetNumber + 21);
+    }
+
+    function handlePreviousTwenty() {
+        if(offsetNumber > 21) {
+            setOffsetNumber(offsetNumber - 21);
+        }
+    }
 
     useEffect(() => {
         async function fetchNextTwenty() {
@@ -33,18 +41,10 @@ function App() {
                 console.error(e);
             }
         }
-        fetchNextTwenty();
+        if(offsetNumber) {
+            fetchNextTwenty();
+        }
     }, [offsetNumber]);
-
-    function handleNextTwenty() {
-        setOffsetNumber(offsetNumber + 20);
-
-    }
-
-    function handlePreviousTwenty() {
-        setOffsetNumber(offsetNumber - 20);
-
-    }
 
     let twentyNames = twenty.map((pokemonName) => {
         return <Pokemon pokeName={pokemonName.name}/>;
@@ -64,7 +64,7 @@ function App() {
             >
                 Next
             </button>
-            <div>
+            <div key={offsetNumber}>
                 {twentyNames}
             </div>
 
