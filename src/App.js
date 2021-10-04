@@ -10,7 +10,7 @@ function App() {
     useEffect(() => {
         async function fetchTwenty() {
             try {
-                const result = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=21&offset=${offsetNumber}`);
+                const result = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offsetNumber}`);
                 console.log(result.data.results);
                 setTwenty(result.data.results);
 
@@ -18,29 +18,34 @@ function App() {
                 console.error(e);
             }
         }
+
         fetchTwenty();
     }, []);
 
     function handleNextTwenty() {
-        setOffsetNumber(offsetNumber + 21);
+        setOffsetNumber(offsetNumber + 20);
     }
 
     function handlePreviousTwenty() {
-        if(offsetNumber > 21) {
-            setOffsetNumber(offsetNumber - 21);
+        if(offsetNumber > 20) {
+            setOffsetNumber(offsetNumber - 20);
+        } else {
+            setOffsetNumber(0);
         }
+
     }
 
     useEffect(() => {
         async function fetchNextTwenty() {
             try {
-                const result = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=21&offset=${offsetNumber}`);
+                const result = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offsetNumber}`);
                 console.log(result.data.results);
                 setTwenty(result.data.results);
             } catch (e) {
                 console.error(e);
             }
         }
+
         if(offsetNumber) {
             fetchNextTwenty();
         }
@@ -52,6 +57,7 @@ function App() {
 
     return (
         <>
+            <div>
             <button
                 type="button"
                 onClick={handlePreviousTwenty}
@@ -64,10 +70,10 @@ function App() {
             >
                 Next
             </button>
-            <div key={offsetNumber}>
+            <div key={offsetNumber} className="poke-container">
                 {twentyNames}
             </div>
-
+            </div>
         </>
     );
 }

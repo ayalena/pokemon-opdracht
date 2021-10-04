@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.poke-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 10px;
+    justify-items: center;
+    background-color: #F1BD00;
+
+}
+
+#poke-item {
+    border: 1px solid black;
+    margin: 15px;
+    padding: 50px;
+    margin: 20px;
+    background-color: whitesmoke;
+
+}
+
+p {
+    margin: 5px;
+}
+
+#abilities {
+    border: 1px solid black;
+    margin: 5px;
+    background-color: lightgray;
+    text-align: center;
+
+}
