@@ -27,7 +27,7 @@ function App() {
     }
 
     function handlePreviousTwenty() {
-        if(offsetNumber > 20) {
+        if (offsetNumber > 20) {
             setOffsetNumber(offsetNumber - 20);
         } else {
             setOffsetNumber(0);
@@ -46,7 +46,7 @@ function App() {
             }
         }
 
-        if(offsetNumber) {
+        if (offsetNumber) {
             fetchNextTwenty();
         }
     }, [offsetNumber]);
@@ -57,22 +57,28 @@ function App() {
 
     return (
         <>
-            <div>
-            <button
-                type="button"
-                onClick={handlePreviousTwenty}
-            >
-                Previous
-            </button>
-            <button
-                type="button"
-                onClick={handleNextTwenty}
-            >
-                Next
-            </button>
-            <div key={offsetNumber} className="poke-container">
-                {twentyNames}
-            </div>
+            <div id="container">
+                <img src="https://cdn.mos.cms.futurecdn.net/nJqzZf3iyhawJfofUMicFV-970-80.jpg.webp" alt="logo"
+                     id="logo"/>
+                <div id="button-container">
+                <button
+                    className="button"
+                    type="button"
+                    onClick={handlePreviousTwenty}
+                >
+                    Previous
+                </button>
+                <button
+                    className="button"
+                    type="button"
+                    onClick={handleNextTwenty}
+                >
+                    Next
+                </button>
+                </div>
+                <div key={offsetNumber} className="poke-container">
+                    {twentyNames}
+                </div>
             </div>
         </>
     );
