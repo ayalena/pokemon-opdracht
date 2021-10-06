@@ -11,7 +11,7 @@ function App() {
         async function fetchTwenty() {
             try {
                 const result = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offsetNumber}`);
-                console.log(result.data.results);
+                console.log(result.data);
                 setTwenty(result.data.results);
 
             } catch (e) {
@@ -27,12 +27,11 @@ function App() {
     }
 
     function handlePreviousTwenty() {
-        if (offsetNumber > 20) {
+        if (offsetNumber >= 20) {
             setOffsetNumber(offsetNumber - 20);
         } else {
             setOffsetNumber(0);
         }
-
     }
 
     useEffect(() => {
@@ -52,7 +51,7 @@ function App() {
     }, [offsetNumber]);
 
     let twentyNames = twenty.map((pokemonName) => {
-        return <Pokemon pokeName={pokemonName.name}/>;
+        return <Pokemon key={pokemonName.name} pokeName={pokemonName.name}/>;
     })
 
     return (

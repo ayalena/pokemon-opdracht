@@ -6,13 +6,9 @@ function Pokemon({pokeName}) {
     const [pokemons, setPokemons] = useState({});
 
     useEffect(() => {
-        const source = axios.CancelToken.source();
-
         async function fetchPokemons() {
             try {
-                const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeName}`, {
-                    cancelToken: source.token,
-                });
+                const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeName}`);
                 console.log(result.data);
                 setPokemons(result.data);
             } catch (e) {
@@ -21,11 +17,6 @@ function Pokemon({pokeName}) {
         }
 
         fetchPokemons();
-
-        return function cleanup() {
-            source.cancel();
-        }
-
     }, []);
 
     return (
@@ -36,9 +27,9 @@ function Pokemon({pokeName}) {
                     <div id="poke-item">
                         <h2>{pokemons.name}</h2>
                         <img src={pokemons.sprites.front_default} alt={pokemons.name}></img>
-                        <p>Moves: {pokemons.moves.length}</p>
-                        <p>Weight: {pokemons.weight}</p>
-                        <p>Abilities: </p>
+                        <p><b>Moves:</b> {pokemons.moves.length}</p>
+                        <p><b>Weight:</b> {pokemons.weight}</p>
+                        <p><b>Abilities:</b> </p>
                         <p >{pokemons.abilities.map((pokemon) => {
                             return <ul id="abilities">{pokemon.ability.name}</ul>
                         })} </p>
