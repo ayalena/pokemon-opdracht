@@ -11,7 +11,7 @@ function App() {
         async function fetchTwenty() {
             try {
                 const result = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offsetNumber}`);
-                console.log(result.data);
+                // console.log(result.data.results);
                 setTwenty(result.data.results);
 
             } catch (e) {
@@ -27,6 +27,7 @@ function App() {
     }
 
     function handlePreviousTwenty() {
+        // console.log("current", offsetNumber);
         if (offsetNumber >= 20) {
             setOffsetNumber(offsetNumber - 20);
         } else {
@@ -38,21 +39,18 @@ function App() {
         async function fetchNextTwenty() {
             try {
                 const result = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offsetNumber}`);
-                console.log(result.data.results);
+                // console.log(result.data.results);
                 setTwenty(result.data.results);
             } catch (e) {
                 console.error(e);
             }
         }
 
-        if (offsetNumber) {
+        if (offsetNumber !== null && offsetNumber !== undefined) {
             fetchNextTwenty();
         }
     }, [offsetNumber]);
 
-    let twentyNames = twenty.map((pokemonName) => {
-        return <Pokemon key={pokemonName.name} pokeName={pokemonName.name}/>;
-    })
 
     return (
         <>
@@ -64,6 +62,7 @@ function App() {
                     className="button"
                     type="button"
                     onClick={handlePreviousTwenty}
+                    disabled={offsetNumber === 0}
                 >
                     Previous
                 </button>
@@ -75,8 +74,11 @@ function App() {
                     Next
                 </button>
                 </div>
-                <div key={offsetNumber} className="poke-container">
-                    {twentyNames}
+                <div className="poke-container">
+                    {twenty.map((pokemonName) => {
+                        return <Pokemon key={pokemonName.name} pokeName={pokemonName.name}/>;
+                    })
+                    }
                 </div>
             </div>
         </>

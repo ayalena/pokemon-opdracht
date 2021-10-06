@@ -9,7 +9,7 @@ function Pokemon({pokeName}) {
         async function fetchPokemons() {
             try {
                 const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeName}`);
-                console.log(result.data);
+                // console.log(result.data);
                 setPokemons(result.data);
             } catch (e) {
                 console.error(e);
@@ -31,7 +31,7 @@ function Pokemon({pokeName}) {
                         <p><b>Weight:</b> {pokemons.weight}</p>
                         <p><b>Abilities:</b> </p>
                         <p >{pokemons.abilities.map((pokemon) => {
-                            return <ul id="abilities">{pokemon.ability.name}</ul>
+                            return <ul id="abilities" >{pokemon.ability.name}</ul>
                         })} </p>
                     </div>
                 </>

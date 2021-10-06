@@ -11,25 +11,36 @@
     justify-items: center;
     background-color: #FFCC03;
 
+
 }
 
 #poke-item {
-    border: 1px solid black;
+    border: 1px solid lightgray;
+    box-shadow: 5px 5px 5px gray;
     margin: 15px;
     padding: 50px;
     margin: 20px;
     background-color: whitesmoke;
-
+    border-radius: 5px;
+    width: 110px;
 }
 
 p {
+    font-family: "Segoe UI", "Arial";
     margin: 5px;
+    margin-top: 15px;
 }
 
 #abilities {
-    border: 1px solid black;
+    border: 1px solid lightgray;
     margin: 5px;
     background-color: lightgray;
     text-align: center;
+    border-radius: 5px;
+}
+
+h2 {
+    font-family: "Segoe UI", "Arial";
+    margin-bottom: 10px;
 
 }

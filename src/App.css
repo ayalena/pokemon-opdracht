@@ -20,9 +20,13 @@
 }
 
 .button {
+    font-family: "Segoe UI", "Arial";
     margin: 5px;
     width: 75px;
     background-color: #046AB3;
     color: whitesmoke;
 }
 
+.button:disabled {
+    background-color: lightgray;
+}
