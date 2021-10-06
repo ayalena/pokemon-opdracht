@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    background-color: #FFCC03;
+    display: flex;
+    flex-direction: column;
+
+}
+
+#logo {
+    width: 20%;
+    margin-left: 500px;
+}
+
+#button-container {
+    margin-left: 550px;
+}
+
+.button {
+    font-family: "Segoe UI", "Arial";
+    margin: 5px;
+    width: 75px;
+    background-color: #046AB3;
+    color: whitesmoke;
+}
+
+.button:disabled {
+    background-color: lightgray;
+}
